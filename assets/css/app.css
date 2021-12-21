@@ -1,6 +1,22 @@
 /* This file is for your main application CSS */
 @import "./phoenix.css";
 
+body {
+  background: slateblue;
+  margin:0;
+  padding: 0;
+}
+
+.inner-content {
+  background: #fefefe;
+  color: #444444;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 70ch;
+  min-height: 100vh;
+}
+
 /* Alerts and form errors used by phx.new */
 .alert {
   padding: 15px;
