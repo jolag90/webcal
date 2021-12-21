@@ -18,6 +18,7 @@ defmodule WebcalWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    # HERE WE GO ... /key/:key
   end
 
   # Other scopes may use custom stacks.

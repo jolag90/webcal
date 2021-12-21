@@ -17,6 +17,37 @@ body {
   min-height: 100vh;
 }
 
+.calculator {
+  background: silver;
+  border-radius: 2rem;
+  padding: 1rem;
+  font-size: 4em;
+  font-family: Impact, 'Arial Narrow Bold', sans-serif;
+  box-shadow: 1px 1px 3px #222222;
+}
+
+.calculator .display {
+  padding: 1rem;
+  background: black;
+  color: white;
+  border-radius: 2rem;
+}
+.calculator .keypad {
+  background: lime;
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr 5fr;
+  text-align: center;
+  border-radius: 1rem;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.calculator .keypad .key {
+  background: skyblue;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
 /* Alerts and form errors used by phx.new */
 .alert {
   padding: 15px;
