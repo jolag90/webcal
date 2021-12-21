@@ -13,7 +13,8 @@ defmodule Webcal.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Webcal.PubSub},
       # Start the Endpoint (http/https)
-      WebcalWeb.Endpoint
+      WebcalWeb.Endpoint,
+      {Calculator, name: :calculator}
       # Start a worker by calling: Webcal.Worker.start_link(arg)
       # {Webcal.Worker, arg}
     ]
