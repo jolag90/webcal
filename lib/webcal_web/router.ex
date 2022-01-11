@@ -17,13 +17,18 @@ defmodule WebcalWeb.Router do
   scope "/", WebcalWeb do
     pipe_through :browser
 
+    # practicing html
     get "/hallo", WelcomeController, :stranger
     get "/hallo/:name", WelcomeController, :servus
     get "/pi", NumberController, :pi
-    get "/", UserController, :new_session
+
+    # user session & calculator HTML
     post "/", UserController, :start_session
     get "/cal/:p1/:p2/:p3", CalculatorController, :index
     get "/cal/:p1/:p2/:p3/key/:key", CalculatorController, :key
+
+    # Calculator Live View
+    live "/lvcal", CalculatorLive
   end
 
   # Other scopes may use custom stacks.
