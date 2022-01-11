@@ -17,6 +17,9 @@ defmodule WebcalWeb.Router do
   scope "/", WebcalWeb do
     pipe_through :browser
 
+    get "/hallo", WelcomeController, :stranger
+    get "/hallo/:name", WelcomeController, :servus
+    get "/pi", NumberController, :pi
     get "/", UserController, :new_session
     post "/", UserController, :start_session
     get "/cal/:p1/:p2/:p3", CalculatorController, :index
