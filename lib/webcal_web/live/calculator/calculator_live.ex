@@ -1,6 +1,7 @@
 defmodule WebcalWeb.CalculatorLive do
   use WebcalWeb, :live_view
 
+  @impl true
   def mount(params, session, socket) do
     pid =
       case Calculator.start_link(:calculator) do
@@ -28,12 +29,13 @@ defmodule WebcalWeb.CalculatorLive do
   @impl true
   def handle_info(:tick, socket) do
     Process.send_after(self(), :tick, 1_000)
-    socket = socket
-    |> assign( :count, socket.assigns.count + 1)
+
+    socket =
+      socket
+      |> assign(:count, socket.assigns.count + 1)
+
     {:noreply, socket}
   end
-
-
 
   @impl true
   def render(assigns) do

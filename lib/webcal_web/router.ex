@@ -23,7 +23,7 @@ defmodule WebcalWeb.Router do
     get "/pi", NumberController, :pi
 
     # user session & calculator HTML
-    post "/", UserController, :start_session
+    get "/", UserController, :new_session
     get "/cal/:p1/:p2/:p3", CalculatorController, :index
     get "/cal/:p1/:p2/:p3/key/:key", CalculatorController, :key
 

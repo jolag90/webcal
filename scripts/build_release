@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mix tailwind default
+MIX_ENV=prod mix release
+MIX_ENV=prod mix assets.deploy

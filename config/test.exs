@@ -4,7 +4,7 @@ import Config
 # you can enable the server option below.
 config :webcal, WebcalWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "V/NGNGzHGgQSZdQgvtnb52UGKxgcgBz4qRo5gx9TX+1Uph7WwZa2kdE5ZOLiTOuy",
+  secret_key_base: "1d8BnDLtWnL6owO9JXiPsKdwD5bpPB4FkkxV3pQn0g/dZ1DwvcjOvqfwCDE3mlvq",
   server: false
 
 # In test we don't send emails.

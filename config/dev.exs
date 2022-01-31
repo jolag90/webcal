@@ -1,11 +1,18 @@
 import Config
 
-# For development, we disable any cache and enable
-# debugging and code reloading.
-#
-# The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
-# with esbuild to bundle .js and .css sources.
+# Tailwind CSS
+
+config :tailwind,
+  version: "3.0.10",
+  default: [
+    args: ~w(
+    --config=tailwind.config.js
+    --input=css/app.css
+    --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
+  ]
+
 config :webcal, WebcalWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
@@ -13,10 +20,10 @@ config :webcal, WebcalWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "xViyqWD1JbCOvCnT9K0q+o/0B8iOfuXzvYo1XHEY7ZmSM3BUiS8gRnE9drK3mwCf",
+  secret_key_base: "1d8BnDLtWnL6owO9JXiPsKdwD5bpPB4FkkxV3pQn0g/dZ1DwvcjOvqfwCDE3mlvq",
   watchers: [
-    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support

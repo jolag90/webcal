@@ -47,7 +47,13 @@ defmodule Webcal.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       # WebCal Dependencies
-      {:calculator, [git: "https://github.com/jolag90/calculator.git", branch: "genserver"]}
+      {:calculator, [git: "https://github.com/jolag90/calculator.git", branch: "genserver"]},
+      ## Global project extensions
+      {:ex_doc, "~> 0.26", only: [:dev], override: true},
+      ## Webcal
+      {:tailwind, "~> 0.1", only: [:dev]},
+      {:earmark, "~> 1.4"}
+
     ]
   end
 

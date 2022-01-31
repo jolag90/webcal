@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Syntax: $0 HOST PORT SERVER RELEASE_NAME command"
+  exit 1
+fi
+
+if [ -z "$6" ]; then
+  KEYBASE=`mix phx.gen.secret`
+else
+  KEYBASE=$6
+fi
+
+# Debug
+# echo "Start release with"
+# echo "MIX_ENV=prod             "
+# echo "SECRET_KEY_BASE=$KEYBASE "
+# echo "PHX_HOST="$1"            "
+# echo "PHX_PORT=$2              "
+# echo "PHX_SERVER=$3            "
+# echo "RELEASE_NAME=$4          "
+
+MIX_ENV=prod             \
+SECRET_KEY_BASE=$KEYBASE \
+PHX_HOST="$1"            \
+PHX_PORT=$2              \
+PHX_SERVER=$3            \
+RELEASE_NAME=$4          \
+  _build/prod/rel/webcal/bin/webcal $5

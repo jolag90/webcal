@@ -1,0 +1,12 @@
+version: "3.8"                                                                                                                                                                                                 
+services:
+  webcal:
+    build: "."
+    image: "webcal"
+    container_name: "webcal"
+    environment:
+    - "TZ=Europe/Vienna"
+    - "SECRET_KEY_BASE=1d8BnDLtWnL6owO9JXiPsKdwD5bpPB4FkkxV3pQn0g/dZ1DwvcjOvqfwCDE3mlvq"
+    ports:
+    - "80:80"
+

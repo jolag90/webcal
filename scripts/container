@@ -1,0 +1,60 @@
+#!/bin/bash
+
+function syntax {
+  echo "Syntax: $0 start|stop|status a|b example.com 80 /path/to/host/data /path/to/priv a_very_long_secret_base"
+}
+
+export PHX_HOST="localhost"
+export PHX_PORT=4000
+export RELEASE_NAME="webcal"
+
+export COMMAND=$1 # start | stop | status
+export INSTANCE=$2 # a | b
+export DNS_NAME=$3
+export HOST_PORT=$4
+export HOST_DATA=$5
+export HOST_STATIC=$6
+export SECRET_KEY_BASE=$7
+
+export NAME="webcal_$HOST_PORT"
+
+if [ -z "$COMMAND" ] | [ -z "$INSTANCE" ] | [ -z "$DNS_NAME" ] | [ -z "$HOST_PORT" ] | [ -z "$SECRET_KEY_BASE" ] | [ -z "$HOST_DATA" ] | [ -z "$HOST_STATIC" ]
+then
+  syntax
+  exit 1
+fi
+
+if [ "$COMMAND" = "start" ]
+then
+  echo "Start container instance $INSTANCE as $NAME for $DNS_NAME at port $HOST_PORT"
+
+  docker run -d  -e SECRET_KEY_BASE="$SECRET_KEY_BASE"          \
+                -e PHX_HOST="$PHX_HOST"                         \
+                -e PHX_PORT=$PHX_PORT                           \
+                -e PHX_SERVER=$DNS_NAME                         \
+                -e RELEASE_NAME=$RELEASE_NAME                   \
+                -e webcal_INSTANCE=A                            \
+                -p $HOST_PORT:4000                              \
+                --name "$NAME"                                  \
+                -v "$HOST_DATA:/home/elixir/app/data"           \
+                -v "$HOST_STATIC:/home/elixir/app/priv/static"  \
+                webcal                                          \
+                > ./webcal_$INSTANCE.id
+
+  cat webcal_$INSTANCE.id
+fi
+
+if [ "$COMMAND" = "stop" ]
+then
+  echo "Stop container instance $INSTANCE named $NAME for $DNS_NAME at port $HOST_PORT"
+  ID=`cat webcal_$INSTANCE.id`
+  docker stop $ID
+  docker rm $ID
+  rm webcal_$INSTANCE.id
+fi
+
+if [ "$COMMAND" = "status" ]
+then
+  echo "Status of container instance $INSTANCE named $NAME for $DNS_NAME at port $HOST_PORT"
+  docker ps | grep -i "$NAME"
+fi
